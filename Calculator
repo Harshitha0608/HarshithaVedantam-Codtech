@@ -1,0 +1,58 @@
+
+import math
+
+def calculator():
+    history = []
+    print("Welcome to the Advanced Calculator!")
+    print("Available operations:")
+    print("1. Addition (+)\n2. Subtraction (-)\n3. Multiplication (*)\n4. Division (/)")
+    print("5. Exponentiation (**)\n6. Modulus (%)\n")
+    
+    while True:
+        print("\nMain Menu")
+        print("Enter 'exit' to quit or 'history' to view previous calculations.")
+        
+        choice = input("Choose an operation by symbol (e.g., +): ").strip()
+        if choice.lower() == 'exit':
+            print("Exiting the calculator.")
+            break
+        elif choice.lower() == 'history':
+            print("\nCalculation History:")
+            if history:
+                for i, record in enumerate(history, 1):
+                    print(f"{i}: {record}")
+            else:
+                print("No calculations yet.")
+            continue
+
+        if choice in ['+', '-', '*', '/', '**', '%']:
+            try:
+                num1 = float(input("Enter the first number: "))
+                num2 = float(input("Enter the second number: "))
+                
+                if choice == '+':
+                    result = num1 + num2
+                elif choice == '-':
+                    result = num1 - num2
+                elif choice == '*':
+                    result = num1 * num2
+                elif choice == '/':
+                    if num2 == 0:
+                        print("Error: Division by zero is undefined.")
+                        continue
+                    result = num1 / num2
+                elif choice == '**':
+                    result = num1 ** num2
+                elif choice == '%':
+                    result = num1 % num2
+                
+                history.append(f"{num1} {choice} {num2} = {result}")
+                print(f"The result is: {result}")
+            
+            except ValueError:
+                print("Invalid input. Please enter numerical values.")
+        else:
+            print("Invalid choice. Please choose a valid operation.")
+
+calculator()
+
